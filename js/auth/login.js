@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
   
         const data = await response.json();
-      
+        
   
         if (response.ok && data.access_token) {
           localStorage.setItem("access_token", data.access_token);
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
             Authorization: `Bearer ${data.access_token}`,
             "Content-Type": "application/json",
           };
-          const userRes = await fetch(`${ BASE_URL }/customers/me`, {
+          const userRes = await fetch(`${BASE_URL}/customers/me`, {
             headers,
           });
           if (!userRes.ok) throw new Error("Invalid token");
@@ -48,15 +48,16 @@ document.addEventListener("DOMContentLoaded", function () {
           localStorage.setItem("email",user.email);
           localStorage.setItem("role",user.role);
           
+          
           if (user.role === "customer") {
-            window.location.href = "/frontend/index.html"; // redirect to next page
+            window.location.href = "./../../index.html"; // redirect to next page
           } else {
             // Temporary fallback for admins
             localStorage.setItem("full_name",user.full_name);
             localStorage.setItem("username",user.username);
             localStorage.setItem("email",user.email);
             localStorage.setItem("role",user.role);
-            window.location.href = "/frontend/pages/admin/admin.html"; // redirect to next page
+            window.location.href = "/pages/admin/admin.html"; // redirect to next page
           }
           
         } else {

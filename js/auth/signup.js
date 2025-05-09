@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const data = await response.json();
         if (response.ok) {
           alert("Signup successful! You can now login.");
-          window.location.href = "index.html";
+          window.location.href = "/index.html";
         } else {
           alert(data.detail || "Signup failed.");
         }

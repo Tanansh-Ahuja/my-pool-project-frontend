@@ -7,9 +7,9 @@ export async function loadNavbar() {
   try {
     const currentPath = window.location.pathname;
     // This ensures we only run token expiration check on the home page
-    const isHomePage = currentPath.endsWith("index.html") || currentPath === "/";
+    const isHomePage = currentPath.endsWith("/index.html") || currentPath === "/";
 
-    const res = await fetch("/frontend/navbar.html");
+    const res = await fetch("/navbar.html");
     const html = await res.text();
     navbarPlaceholder.innerHTML = html;
 
@@ -27,15 +27,15 @@ export async function loadNavbar() {
 if (!token) {
   localStorage_removeItems();  // remove token, role, etc.
   navLinks.innerHTML = `
-    <a href="/frontend/index.html">Home</a>
-    <a href="/frontend/login.html">Login</a>
+    <a href="/index.html">Home</a>
+    <a href="/login.html">Login</a>
   `;
 } else if(isHomePage && await is_token_expired(token))
 {
   localStorage_removeItems();
   navLinks.innerHTML = `
-    <a href="/frontend/index.html">Home</a>
-    <a href="/frontend/login.html">Login</a>
+    <a href="/index.html">Home</a>
+    <a href="/login.html">Login</a>
   `;
 }
 else{
@@ -43,28 +43,28 @@ else{
   const role = localStorage.getItem("role");
   if (role === "customer") {
     navLinks.innerHTML = `
-      <a href="/frontend/index.html">Home</a>
-      <a href="/frontend/pages/customer/booking_create.html">Book Now</a>
-      <a href="/frontend/pages/customer/view_bookings.html">Bookings</a>
-      <a href="/frontend/pages/customer/customer_profile.html">Profile</a>
+      <a href="index.html">Home</a>
+      <a href="/pages/customer/booking_create.html">Book Now</a>
+      <a href="/pages/customer/view_bookings.html">Bookings</a>
+      <a href="/pages/customer/customer_profile.html">Profile</a>
       <a href="#" id="logout-link">Logout</a>
     `;
     document.getElementById("logout-link").addEventListener("click", () => {
             localStorage_removeItems();
-            window.location.href = "/frontend/index.html";
+            window.location.href = "/index.html";
           });
     
   } else {
     navLinks.innerHTML = `
-      <a href="/frontend/pages/admin/admin.html">Home</a>
-      <a href="/frontend/pages/admin/view_bookings.html">View Bookings</a>
-      <a href="/frontend/pages/admin/view_revenue.html">View Revenue</a>
-      <a href="/frontend/pages/customer/customer_profile.html">Profile</a>
+      <a href="/pages/admin/admin.html">Home</a>
+      <a href="/pages/admin/view_bookings.html">View Bookings</a>
+      <a href="/pages/admin/view_revenue.html">View Revenue</a>
+      <a href="/pages/customer/customer_profile.html">Profile</a>
       <a href="#" id="logout-link">Logout</a>
     `;
     document.getElementById("logout-link").addEventListener("click", () => {
             localStorage_removeItems();
-            window.location.href = "/frontend/index.html";
+            window.location.href = "/index.html";
           });
     
   }
@@ -74,8 +74,8 @@ else{
     console.error("Auth check failed:", err);
     localStorage_removeItems();
     navLinks.innerHTML = `
-      <a href="/frontend/index.html">Home</a>
-      <a href="/frontend/login.html">Login</a>
+      <a href="/index.html">Home</a>
+      <a href="/login.html">Login</a>
     `;
   }
 }

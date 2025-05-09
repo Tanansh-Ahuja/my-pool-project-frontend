@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   
     if (!token) {
       alert("Please log in first.");
-      window.location.href = "/frontend/index.html";
+      window.location.href = "/index.html";
       return;
     }
   
@@ -93,5 +93,5 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("logout-btn").addEventListener("click", () => {
     console.log("In logout button");
     localStorage.removeItem("access_token"); // Clear the JWT token
-    window.location.href = "/frontend/index.html"; // Redirect to login page
+    window.location.href = "/index.html"; // Redirect to login page
   });

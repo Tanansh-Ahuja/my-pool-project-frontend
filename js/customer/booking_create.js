@@ -4,12 +4,12 @@ import { BASE_URL } from "./../config.js";
 document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("access_token");
   if (!token) {
-    window.location.href = "/frontend/login.html";
+    window.location.href = "/login.html";
     return;
   }
   if (localStorage.getItem("role")!="customer") {
       alert("You Are not authorised to view this page");
-      window.location.href = "/frontend/index.html";
+      window.location.href = "/index.html";
       return;
     }
 });
@@ -186,7 +186,7 @@ submitBookingBtn.addEventListener("click", async () => {
     if (!res.ok) throw new Error("Booking failed.");
 
     alert("Booking successful!");
-    window.location.href = "/frontend/index.html";
+    window.location.href = "/index.html";
   } catch (err) {
     console.error("Booking error:", err);
     alert("Something went wrong. Try again.");
